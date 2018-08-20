@@ -1,0 +1,32 @@
+/* src/components/Navbar/Navbar.css */
+.Navbar{
+  background: #3A3A3A;
+  padding: 0.2rem 0;
+  padding-right: calc((100vw - 960px) / 2);
+  padding-left: calc((100vw - 960px) / 2);
+  color: white;
+}
+.Navbar .Menu{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.4rem;
+  font-family: Verdana
+}
+.Navbar .Logo{
+  width: 3rem;
+  height: auto;
+}
+.Navbar .Navigation{
+  display: flex;
+  list-style-type: none;
+  padding-left: 1.3rem
+}
+.Navbar .Navigation li{
+  margin-right: 0.7rem
+
+}
+
+
+
+
