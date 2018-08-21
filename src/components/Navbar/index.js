@@ -1,6 +1,6 @@
 import React from "react"
 import {
-  Link,
+  NavLink
 } from 'react-router-dom'
 
 import "./Navbar.css"
@@ -14,10 +14,10 @@ class Navbar extends React.Component{
           <img className="Logo" src={logo} alt="Y-combinator" />
           <ul class="Navigation">
             <li>
-              <Link to='/'>New</Link>
+              <NavLink exact to='/'>New</NavLink>
             </li>
             <li>
-              <Link to="/comments">Comments</Link>
+              <NavLink to="/comments/">Comments</NavLink>
             </li>
           </ul>
         </div>

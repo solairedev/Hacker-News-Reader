@@ -1,4 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:700');
 body {
-  background: #1B1B1B
+  background: #1B1B1B;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Open Sans', sans-serif;
 }
 
+
+body {
+  margin: 0;
+  padding: 0;
+  color: white
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+main{
+  max-width: 960px;
+  margin: 0 auto;
+}

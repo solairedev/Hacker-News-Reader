@@ -1,0 +1,43 @@
+/* src/components/Story/Story.css */
+.Story{
+  width: 100%;
+  border-top: 1px solid rgba(255,255,255, 0.4);
+  padding: 0.75rem 0;
+  position: relative;
+}
+.Story:last-of-type{
+  border-bottom: 1px solid rgba(255,255,255, 0.4);
+}
+.Story .Header{
+  max-width: 90%;
+}
+.Story .Title{
+  margin: 0rem 0.5rem 0 0;
+  font-size: 1.25rem;
+}
+.Story .Source{
+  font-size: 0.8rem;
+}
+.Story .Meta{
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+  display: flex;
+  flex-shrink: 0;
+
+}
+.Story .Meta .MetaItem{
+  margin-right: 1rem
+}
+.Story a{
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+.Story .Header .Title a:visited{
+  color: gray;
+}
+.Story a:not(:visited):hover,
+.Story a:not(:visited):focus{
+  color: rgba(255,255,255,0.6);
+}
+
+
