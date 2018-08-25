@@ -1,12 +1,12 @@
 /* src/components/Story/Story.css */
 .Story{
   width: 100%;
-  border-top: 1px solid rgba(255,255,255, 0.4);
+  border-top: 1px solid rgba(255,255,255, 0.1);
   padding: 0.75rem 0;
   position: relative;
 }
 .Story:last-of-type{
-  border-bottom: 1px solid rgba(255,255,255, 0.4);
+  border-bottom: 1px solid rgba(255,255,255, 0.1);
 }
 .Story .Header{
   max-width: 90%;
@@ -26,18 +26,26 @@
 
 }
 .Story .Meta .MetaItem{
-  margin-right: 1rem
+  margin-right: 1rem;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: white;
+}
+.Story .Meta .MetaItem.is-active{
+  color: #ff5800;
 }
 .Story a{
-  color: white;
   transition: all 0.2s ease-in-out;
 }
-.Story .Header .Title a:visited{
+.Story a:visited{
   color: gray;
 }
-.Story a:not(:visited):hover,
-.Story a:not(:visited):focus{
-  color: rgba(255,255,255,0.6);
+a.MetaItem:hover,
+.Story a:hover, .Story a:visited:hover,
+.Story a:focus, .Story a:visited:focus{
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 

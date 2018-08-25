@@ -14,7 +14,7 @@ class Navbar extends React.Component{
           <img className="Logo" src={logo} alt="Y-combinator" />
           <ul class="Navigation">
             <li>
-              <NavLink exact to='/'>New</NavLink>
+              <NavLink exact to='/'>News</NavLink>
             </li>
             <li>
               <NavLink to="/comments/">Comments</NavLink>
