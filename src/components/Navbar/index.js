@@ -12,7 +12,7 @@ class Navbar extends React.Component{
       <nav className="Navbar">
         <div className="Menu">
           <img className="Logo" src={logo} alt="Y-combinator" />
-          <ul class="Navigation">
+          <ul className="Navigation">
             <li>
               <NavLink exact to='/'>News</NavLink>
             </li>

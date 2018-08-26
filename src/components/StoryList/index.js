@@ -2,9 +2,6 @@ import React, { Component } from "react";
 
 import Story from "../Story";
 
-const API = 'https://api.hackerwebapp.com/news';
-const DEFAULT_QUERY = '?page=1';
-
 class StoryList extends Component {
   constructor(props){
     super(props);
@@ -12,31 +9,21 @@ class StoryList extends Component {
       stories : this.props.stories
     };
   }
-  componentDidMount(){
-    if (this.state.isNeedFetch){
-      fetch(API + DEFAULT_QUERY)
-        .then(response => response.json())
-        .then(data => this.setState({
-          stories: data,
-          isNeedFetch : false
-        }));
-    }
-  }
   render() {
+    const stories = this.state.stories;
     return (
-        <div>
-        {this.state.stories.map((story, index) =>
+        <div className="StoryList">
+        {stories.map((story, index) =>
           <Story
             key={story.id}
-            test ={story.id}
+            id ={story.id}
             index={index}
             title={story.title}
             url={story.url}
-            source={story.domain}
-            rating={story.points}
-            author={story.user}
-            dataTime={story.time_ago}
-            commentCount={story.comments_count}
+            rating={story.score}
+            author={story.by}
+            dataTime={story.time}
+            commentCount={story.descendants}
           />
         )}
       </div>

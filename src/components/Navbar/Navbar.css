@@ -13,7 +13,7 @@
   font-weight: 400;
 }
 .Navbar .Logo{
-  width: 2rem;
+  width: 1.8rem;
   height: auto;
   border: 2px solid;
   opacity: 0.95;
@@ -27,7 +27,7 @@
   margin-right: 0.7rem
 }
 .Navbar .Navigation .active{
-  border-bottom: 2px solid;
+  border-bottom: 1px solid;
  }
 
 

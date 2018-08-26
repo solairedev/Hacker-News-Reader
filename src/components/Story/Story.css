@@ -21,9 +21,7 @@
 .Story .Meta{
   margin: 0.5rem 0;
   font-size: 0.85rem;
-  display: flex;
-  flex-shrink: 0;
-
+  font-weight: 300;
 }
 .Story .Meta .MetaItem{
   margin-right: 1rem;
@@ -32,20 +30,22 @@
   padding: 0;
   color: white;
 }
-.Story .Meta .MetaItem.is-active{
-  color: #ff5800;
-}
 .Story a{
   transition: all 0.2s ease-in-out;
 }
+.Story a:focus,
+.Story a:hover,
 .Story a:visited{
   color: gray;
 }
-a.MetaItem:hover,
+.Story .Meta a{
+  padding-bottom: 0;
+  border-bottom: 1px solid;
+ }
 .Story a:hover, .Story a:visited:hover,
 .Story a:focus, .Story a:visited:focus{
-  opacity: 0.6;
-  cursor: pointer;
+  /*opacity: 0.6;*/
+  /*cursor: pointer;*/
 }
 
 

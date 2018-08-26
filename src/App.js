@@ -10,7 +10,9 @@ import {
 
 const TestPageComments = () => {
   return (
+      <div>
         <h1>Comments</h1>
+      </div>
       );
 }
 class App extends Component {
