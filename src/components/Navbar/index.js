@@ -1,20 +1,35 @@
 import React from "react"
 import {
-  NavLink
+  NavLink,
+  Link
 } from 'react-router-dom'
 
+import PropTypes from 'prop-types'
+
 import "./Navbar.css"
+
 import logo from "../../images/logo.jpg"
+import { withRouter } from 'react-router'
+
 
 class Navbar extends React.Component{
+  static propTypes = {
+    //match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    //history: PropTypes.object.isRequired
+  }
   render(){
+    const { match, location, history } = this.props
+
+    const newsClass = (location.pathname.match(/^\/news/) || location.pathname === "/" ? "active" : "" ? "active" : "")
+
     return(
       <nav className="Navbar">
         <div className="Menu">
           <img className="Logo" src={logo} alt="Y-combinator" />
           <ul className="Navigation">
             <li>
-              <NavLink exact to='/'>News</NavLink>
+              <Link className={newsClass} exact to='/'>News</Link>
             </li>
             <li>
               <NavLink to="/comments/">Comments</NavLink>
@@ -26,4 +41,4 @@ class Navbar extends React.Component{
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

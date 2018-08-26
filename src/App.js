@@ -23,6 +23,7 @@ class App extends Component {
             <Navbar />
             <main>
               <Route path="/" exact component={StoryListPage} />
+              <Route path="/news/:page" component={StoryListPage} />
               <Route path="/comments" component={TestPageComments} />
             </main>
           </div>

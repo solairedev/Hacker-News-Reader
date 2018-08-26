@@ -1,15 +1,12 @@
 /* src/components/Story/Story.css */
 .Story{
-  width: 100%;
   border-top: 1px solid rgba(255,255,255, 0.1);
-  padding: 0.75rem 0;
+  padding: 0.75rem 0.2rem 0.75rem 1rem;
   position: relative;
+  background: #252525;
 }
 .Story:last-of-type{
   border-bottom: 1px solid rgba(255,255,255, 0.1);
-}
-.Story .Header{
-  max-width: 90%;
 }
 .Story .Title{
   margin: 0rem 0.5rem 0 0;
@@ -19,7 +16,7 @@
   font-size: 0.8rem;
 }
 .Story .Meta{
-  margin: 0.5rem 0;
+  margin: 0.1rem 0 0rem;
   font-size: 0.85rem;
   font-weight: 300;
 }
@@ -31,7 +28,6 @@
   color: white;
 }
 .Story a{
-  transition: all 0.2s ease-in-out;
 }
 .Story a:focus,
 .Story a:hover,
@@ -39,13 +35,12 @@
   color: gray;
 }
 .Story .Meta a{
-  padding-bottom: 0;
   border-bottom: 1px solid;
  }
 .Story a:hover, .Story a:visited:hover,
 .Story a:focus, .Story a:visited:focus{
   /*opacity: 0.6;*/
-  /*cursor: pointer;*/
+  cursor: pointer;
 }
 
 

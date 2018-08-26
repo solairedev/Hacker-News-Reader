@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import {
+  Link
+} from 'react-router-dom'
+
 
 import StoryList from '../StoryList'
 
@@ -13,7 +17,7 @@ class StoryListPage extends Component {
     this.state = {
       storyList      : [], // Just ID list
       storyForView   : [], // Real content filter by current page
-      storyPerPager  : 10,
+      storyPerPager  : 15,
       storyPage      : 1,
       storyMaxPage   : null,
       isLoading      : true
@@ -26,17 +30,19 @@ class StoryListPage extends Component {
       .then(data => {
           this.setState({
             storyList    : data,
-            storyMaxPage : data.length / this.state.storyPerPager
+            storyMaxPage : Math.ceil(data.length / this.state.storyPerPager)
           }, resolve())
       })
     })
   }
-  fetchSingleStory( ID_Story ){
+  fetchSingleStory(id, index){
+    let rank = index + 1;
     return new Promise(resolve => {
-      fetch(API_SINGLE_STORY + ID_Story + DEFAULT_FORMAT)
+      fetch(API_SINGLE_STORY + id + DEFAULT_FORMAT)
         .then(response => response.json())
         .then(data => {
-          let item = data
+          let item  = data
+          item.rank = rank
           resolve(item)
         })
     })
@@ -45,7 +51,7 @@ class StoryListPage extends Component {
     let storyStartPoint = this.state.storyPerPager * (this.state.storyPage - 1)
     let storyEndPoint   = this.state.storyPerPager * this.state.storyPage
     let storyForView    = this.state.storyList.slice(storyStartPoint,storyEndPoint)
-    //console.log(storyStartPoint, " ", storyEndPoint)
+
     let actions = storyForView.map(this.fetchSingleStory)
     let result  = Promise.all(actions)
     result.then(data => {
@@ -55,31 +61,30 @@ class StoryListPage extends Component {
       })
     })
   }
-  nextPage(e){
-    if (this.state.storyPage < this.state.storyMaxPage){
-      this.setState({
-          storyPage : this.state.storyPage + 1,
-          isLoading : true
-        }, () =>{
-          this.fetchStoryForView()
-          this.renderStoryList()
-      })
-    }
-  }
-  prevPage(e){
-    if (this.state.storyPage > 1){
-      this.setState({
-          storyPage : this.state.storyPage - 1,
-          isLoading : true
-        }, () =>{
-          this.fetchStoryForView()
-          this.renderStoryList()
-      })
-    }
-  }
   componentDidMount(){
-    if (this.state.storyForView.length === 0){
+    const { page } = this.props.match.params
+    if (page !== undefined){
+    this.setState({
+        storyPage : parseInt(page,10),
+        isLoading : true
+      }, () =>{
+        this.fetchStoryList().then(() => this.fetchStoryForView())
+      });
+    }
+    else{
       this.fetchStoryList().then(() => this.fetchStoryForView())
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    const { page } = nextProps.match.params
+    if (page !== undefined){
+    this.setState({
+        storyPage : parseInt(page,10),
+        isLoading : true
+      }, () =>{
+        this.fetchStoryForView()
+        this.renderStoryList()
+      });
     }
   }
   renderStoryList(){
@@ -96,14 +101,18 @@ class StoryListPage extends Component {
     }
   }
   render() {
+    const currentPage = this.state.storyPage
+    const maxPage     = this.state.storyMaxPage
+    const nextPage    = this.state.storyPage + 1;
+    const prevPage    = this.state.storyPage - 1;
     return (
         <div>
           { this.renderStoryList() }
           <div className="List-manager">
             <div className="Control">
-              <button onClick={e => this.prevPage(e)}>&lt; prev</button>
-                <span>{this.state.storyPage}</span>
-              <button onClick={e => this.nextPage(e)}>next &gt; </button>
+              {currentPage !== 1 && <Link to={'/news/' + prevPage}>&lt; prev</Link> }
+              <span>{currentPage} / {maxPage}</span>
+              {currentPage !== maxPage && <Link to={'/news/' + nextPage}>next &gt;</Link> }
             </div>
           </div>
         </div>

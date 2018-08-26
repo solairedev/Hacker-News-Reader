@@ -17,7 +17,7 @@ class StoryList extends Component {
           <Story
             key={story.id}
             id ={story.id}
-            index={index}
+            index={story.rank}
             title={story.title}
             url={story.url}
             rating={story.score}
