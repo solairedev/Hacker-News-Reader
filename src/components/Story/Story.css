@@ -27,20 +27,12 @@
   padding: 0;
   color: white;
 }
-.Story a{
-}
+.Story a:visited,
 .Story a:focus,
-.Story a:hover,
-.Story a:visited{
-  color: gray;
+.Story a:hover{
+  color: gray
 }
 .Story .Meta a{
   border-bottom: 1px solid;
  }
-.Story a:hover, .Story a:visited:hover,
-.Story a:focus, .Story a:visited:focus{
-  /*opacity: 0.6;*/
-  cursor: pointer;
-}
-
 

@@ -29,7 +29,7 @@ class Navbar extends React.Component{
           <img className="Logo" src={logo} alt="Y-combinator" />
           <ul className="Navigation">
             <li>
-              <Link className={newsClass} exact to='/'>News</Link>
+              <Link className={newsClass} to='/'>News</Link>
             </li>
             <li>
               <NavLink to="/comments/">Comments</NavLink>

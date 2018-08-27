@@ -15,76 +15,51 @@ class StoryListPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      storyList      : [], // Just ID list
-      storyForView   : [], // Real content filter by current page
-      storyPerPager  : 15,
-      storyPage      : 1,
-      storyMaxPage   : null,
-      isLoading      : true
+      storyList           : [], // Full ID list
+      storyForCurrentPage : [], // ID list for current page
+      storyPerPager       : 30,
+      storyPage           : 1,
+      storyMaxPage        : null,
+      isLoading           : true
     };
   }
-  fetchStoryList(){
-    return new Promise(resolve => {
+  fetchStoryListID(){
+    return new Promise(resolve =>{
       fetch(API_TOP_STORY_LIST)
-      .then(response => response.json())
-      .then(data => {
-          this.setState({
-            storyList    : data,
-            storyMaxPage : Math.ceil(data.length / this.state.storyPerPager)
-          }, resolve())
-      })
-    })
-  }
-  fetchSingleStory(id, index){
-    let rank = index + 1;
-    return new Promise(resolve => {
-      fetch(API_SINGLE_STORY + id + DEFAULT_FORMAT)
         .then(response => response.json())
         .then(data => {
-          let item  = data
-          item.rank = rank
-          resolve(item)
+          resolve(data)
         })
     })
   }
-  fetchStoryForView(){
+  getStoryForCurrentPage(){
     let storyStartPoint = this.state.storyPerPager * (this.state.storyPage - 1)
     let storyEndPoint   = this.state.storyPerPager * this.state.storyPage
-    let storyForView    = this.state.storyList.slice(storyStartPoint,storyEndPoint)
+    let storyForCurrentPage    = this.state.storyList.slice(storyStartPoint,storyEndPoint)
 
-    let actions = storyForView.map(this.fetchSingleStory)
-    let result  = Promise.all(actions)
-    result.then(data => {
-      this.setState({
-        storyForView: data,
-        isLoading : false
-      })
+    this.setState({
+      storyForCurrentPage : storyForCurrentPage,
+      isLoading           : false
     })
   }
   componentDidMount(){
     const { page } = this.props.match.params
-    if (page !== undefined){
-    this.setState({
-        storyPage : parseInt(page,10),
-        isLoading : true
-      }, () =>{
-        this.fetchStoryList().then(() => this.fetchStoryForView())
-      });
-    }
-    else{
-      this.fetchStoryList().then(() => this.fetchStoryForView())
-    }
+    this.fetchStoryListID().then(data => {
+      this.setState({
+        storyList    : data,
+        storyMaxPage : Math.ceil(data.length / this.state.storyPerPager),
+        storyPage    : page !== undefined ? parseInt(page,10) : 1,
+        }, () => this.getStoryForCurrentPage())
+    })
   }
   componentWillReceiveProps(nextProps) {
     const { page } = nextProps.match.params
-    if (page !== undefined){
-    this.setState({
-        storyPage : parseInt(page,10),
-        isLoading : true
-      }, () =>{
-        this.fetchStoryForView()
-        this.renderStoryList()
-      });
+    if (this.state.storyPage !== page){
+      window.scrollTo(0, 0)
+      this.setState({
+          storyPage    : page !== undefined ? parseInt(page,10) : 1,
+          isLoading : true
+        }, () => this.getStoryForCurrentPage());
     }
   }
   renderStoryList(){
@@ -97,7 +72,7 @@ class StoryListPage extends Component {
           </div>
           );
     } else {
-      return <StoryList stories={this.state.storyForView} />
+      return <StoryList stories={this.state.storyForCurrentPage} />
     }
   }
   render() {

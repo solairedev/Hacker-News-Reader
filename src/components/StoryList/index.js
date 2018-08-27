@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 import Story from "../Story";
 
 class StoryList extends Component {
@@ -13,17 +14,10 @@ class StoryList extends Component {
     const stories = this.state.stories;
     return (
         <div className="StoryList">
-        {stories.map((story, index) =>
+        {stories.map((id) =>
           <Story
-            key={story.id}
-            id ={story.id}
-            index={story.rank}
-            title={story.title}
-            url={story.url}
-            rating={story.score}
-            author={story.by}
-            dataTime={story.time}
-            commentCount={story.descendants}
+            key = {id}
+            id  = {id}
           />
         )}
       </div>
