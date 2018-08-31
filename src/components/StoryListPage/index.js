@@ -8,8 +8,6 @@ import StoryList from '../StoryList'
 
 const API_TOP_STORY_LIST   = 'https://hacker-news.firebaseio.com/v0/topstories.json';
 const API_NEW_STORY_LIST   = 'https://hacker-news.firebaseio.com/v0/newstories.json';
-const API_SINGLE_STORY     = 'https://hacker-news.firebaseio.com/v0/item/'
-const DEFAULT_FORMAT       = '.json';
 
 class StoryListPage extends Component {
   constructor(props){

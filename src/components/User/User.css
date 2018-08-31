@@ -1,0 +1,18 @@
+.Box{
+  border-top: 1px solid rgba(255,255,255, 0.1);
+  padding: 0.75rem 0.2rem 0.75rem 1rem;
+  position: relative;
+  background: #252525;
+}
+.Box .Title{
+  margin: 0rem 0.5rem 0 0;
+  font-size: 1.25rem;
+}
+.Box .Meta{
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  font-weight: 300;
+}
+.Box .Meta p{
+  margin: 0.1rem 0 0 0
+}

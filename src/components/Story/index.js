@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import TimeAgo from '../TimeAgo/'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import {
+  Link
+} from 'react-router-dom'
 
 
 import "./Story.css"
@@ -56,7 +59,7 @@ class Story extends Component {
             <h2 className="Title"><a target="_blank" href={this.state.url}>{this.state.title}</a></h2>
           </header>
           {!this.state.isLoading ? (
-            <p className="Meta"> {this.state.rating} points by <a href={'https://news.ycombinator.com/user?id=' + this.state.author}>{this.state.author}</a> {this.state.dataTime ? (<TimeAgo time={this.state.dataTime} />) : ""}| <a href={'https://news.ycombinator.com/item?id=' + this.state.id}>{this.state.commentCount} comments</a> </p>
+          <p className="Meta"> {this.state.rating} points by <Link to={'/user/' + this.state.author}>{this.state.author}</Link> {this.state.dataTime ? (<TimeAgo time={this.state.dataTime} />) : ""}| <a href={'https://news.ycombinator.com/item?id=' + this.state.id}>{this.state.commentCount} comments</a> </p>
             ) : (
             <SkeletonTheme color="#202020" highlightColor="#444">
               <div style={{maxWidth: '75%'}} >

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/'
 import StoryListPage from './components/StoryListPage/'
+import UserPage from './components/UserPage/'
 
 import {
   BrowserRouter as Router,
@@ -10,8 +11,8 @@ import {
 
 const TestPageComments = () => {
   return (
-      <div>
-        <h1>Comments</h1>
+      <div className="Box">
+        <h1 className="Title">Comments</h1>
       </div>
       );
 }
@@ -24,6 +25,7 @@ class App extends Component {
             <main>
               <Route path="/" exact={true} component={StoryListPage} />
               <Route path="/news/:page" component={StoryListPage} />
+              <Route path="/user/:id" component={UserPage} />
               <Route path="/comments" component={TestPageComments} />
             </main>
           </div>
