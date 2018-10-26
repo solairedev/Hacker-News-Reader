@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import TimeAgo from '../TimeAgo/'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import "./User.css"
-
-const API_USER_INFO  = 'https://hacker-news.firebaseio.com/v0/user/'
-const DEFAULT_FORMAT = '.json'
-
+import { fetchUserInfo } from '../Api/'
 
 class User extends Component {
   constructor(props){
@@ -19,18 +16,8 @@ class User extends Component {
         isLoading  : true,
       }
   };
-  fetchUserInfo( name ){
-    return new Promise(resolve => {
-      fetch( API_USER_INFO + name + DEFAULT_FORMAT )
-        .then(response => response.json())
-        .then(data => {
-          let user = data;
-          resolve(user);
-        })
-    })
-  }
   componentDidMount(){
-    this.fetchUserInfo( this.state.id )
+    fetchUserInfo( this.state.id )
       .then( user => {
         this.setState({
           about     : user.about,

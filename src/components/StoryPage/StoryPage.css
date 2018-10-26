@@ -1,0 +1,24 @@
+.StoryPage .Box .Meta strong{
+  font-size: 1rem;
+}
+.StoryPage .Box .Content{
+  font-weight: 300;
+  font-size: 0.96rem;
+}
+.StoryPage .Box .Content a{
+  border-bottom: 1px solid;
+}
+.StoryPage .Box .Content a:focus,
+.StoryPage .Box .Content a:hover{
+  opacity: 0.6;
+}
+.StoryPage .Box .Content p:last-of-type{
+  margin-bottom: 1px;
+}
+.Reply{
+  border-left: 1px solid rgba(255,255,255, 0.1);
+}
+.Reply .Box{
+  border-width: 0;
+  padding-bottom: 0;
+}

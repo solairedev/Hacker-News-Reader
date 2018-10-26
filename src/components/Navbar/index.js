@@ -1,6 +1,5 @@
 import React from "react"
 import {
-  NavLink,
   Link
 } from 'react-router-dom'
 
@@ -19,9 +18,12 @@ class Navbar extends React.Component{
     //history: PropTypes.object.isRequired
   }
   render(){
-    const { match, location, history } = this.props
+    const { location } = this.props
 
-    const newsClass = (location.pathname.match(/^\/news/) || location.pathname === "/" ? "active" : "" ? "active" : "")
+    const newNavClass    = (location.pathname.match(/^\/new/)    ? "active" : "")
+    const topNavClass    = (location.pathname.match(/^\/top/)    ? "active" : "")
+    const bestNavClass   = (location.pathname.match(/^\/best/)   ? "active" : "")
+    const searchNavClass = (location.pathname.match(/^\/search/) ? "active" : "")
 
     return(
       <nav className="Navbar">
@@ -29,10 +31,16 @@ class Navbar extends React.Component{
           <img className="Logo" src={logo} alt="Y-combinator" />
           <ul className="Navigation">
             <li>
-              <Link className={newsClass} to='/'>News</Link>
+              <Link className={newNavClass} to='/new/1'>New</Link>
             </li>
             <li>
-              <NavLink to="/comments/">Comments</NavLink>
+              <Link className={topNavClass} to='/top/1'>Top</Link>
+            </li>
+            <li>
+              <Link className={bestNavClass} to='/best/1'>Best</Link>
+            </li>
+            <li>
+              <Link className={searchNavClass} to="/search/">Search</Link>
             </li>
           </ul>
         </div>

@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import {
   Link
 } from 'react-router-dom'
-
-
+import { fetchStoryListID } from '../Api/'
 import StoryList from '../StoryList'
 
-const API_TOP_STORY_LIST   = 'https://hacker-news.firebaseio.com/v0/topstories.json';
-const API_NEW_STORY_LIST   = 'https://hacker-news.firebaseio.com/v0/newstories.json';
 
 class StoryListPage extends Component {
   constructor(props){
@@ -18,22 +15,14 @@ class StoryListPage extends Component {
       storyPerPager       : 30,
       storyPage           : 1,
       storyMaxPage        : null,
-      isLoading           : true
+      isLoading           : true,
+      type                : this.props.type
     };
   }
-  fetchStoryListID(){
-    return new Promise(resolve =>{
-      fetch(API_TOP_STORY_LIST)
-        .then(response => response.json())
-        .then(data => {
-          resolve(data)
-        })
-    })
-  }
   getStoryForCurrentPage(){
-    let storyStartPoint = this.state.storyPerPager * (this.state.storyPage - 1)
-    let storyEndPoint   = this.state.storyPerPager * this.state.storyPage
-    let storyForCurrentPage    = this.state.storyList.slice(storyStartPoint,storyEndPoint)
+    let storyStartPoint     = this.state.storyPerPager * (this.state.storyPage - 1)
+    let storyEndPoint       = this.state.storyPerPager * this.state.storyPage
+    let storyForCurrentPage = this.state.storyList.slice(storyStartPoint,storyEndPoint)
 
     this.setState({
       storyForCurrentPage : storyForCurrentPage,
@@ -42,7 +31,7 @@ class StoryListPage extends Component {
   }
   componentDidMount(){
     const { page } = this.props.match.params
-    this.fetchStoryListID().then(data => {
+    fetchStoryListID( this.props.type ).then(data => {
       this.setState({
         storyList    : data,
         storyMaxPage : Math.ceil(data.length / this.state.storyPerPager),
@@ -74,18 +63,18 @@ class StoryListPage extends Component {
     }
   }
   render() {
-    const currentPage = this.state.storyPage
-    const maxPage     = this.state.storyMaxPage
-    const nextPage    = this.state.storyPage + 1;
-    const prevPage    = this.state.storyPage - 1;
+    const currentPage  = this.state.storyPage
+    const maxPage      = this.state.storyMaxPage
+    const nextPageLink = '/' + this.state.type + '/' + ( this.state.storyPage + 1 ).toString();
+    const prevPageLink = '/' + this.state.type + '/' + ( this.state.storyPage - 1 ).toString();
     return (
         <div>
           { this.renderStoryList() }
           <div className="List-manager">
             <div className="Control">
-              {currentPage !== 1 && <Link to={'/news/' + prevPage}>&lt; prev</Link> }
+              {currentPage !== 1 && <Link to={prevPageLink}>&lt; prev</Link> }
               <span>{currentPage} / {maxPage}</span>
-              {currentPage !== maxPage && <Link to={'/news/' + nextPage}>next &gt;</Link> }
+              {currentPage !== maxPage && <Link to={nextPageLink}>next &gt;</Link> }
             </div>
           </div>
         </div>

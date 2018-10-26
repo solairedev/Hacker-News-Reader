@@ -17,8 +17,11 @@
 }
 .Story .Meta{
   margin: 0.1rem 0 0rem;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 300;
+}
+.Story .Header + .Meta{
+  margin-top: 0.2rem
 }
 .Story .Meta .MetaItem{
   margin-right: 1rem;
