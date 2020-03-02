@@ -2,6 +2,7 @@
   "name": "hacker-news-reader",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "epoch-timeago": "^1.1.9",
     "react": "^16.4.2",
