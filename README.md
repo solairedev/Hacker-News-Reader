@@ -1,3 +1,5 @@
+Demo: https://solairedev.space/src/hacker-news-reader
+
 ## Functions
 
 * Paginated view of the list of the best, new and top posts
@@ -7,6 +9,13 @@
 ## TO-DO
 
 * Add search 
+
+## Run  
+
+~~~
+$ npm i
+$ npm start
+~~~
 
 ## Screenshots
 
